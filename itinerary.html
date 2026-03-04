@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Good Vibrations — Ionian Islands 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ocean: #0d5c8a;
+    --ocean-light: #e8f4f8;
+    --gold: #c9a227;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+    --page-bg: #f0f4f8;
+    --green: #2a6b3a;
+    --night: #1a2456;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--page-bg); color: var(--text); }
+
+  /* ── COVER ── */
+  .cover {
+    position: relative;
+    width: 100%; height: 100vh; min-height: 600px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0d5c8a 0%, #1a2456 100%);
+  }
+  .cover-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.pexels.com/photos/35740504/pexels-photo-35740504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center/cover no-repeat;
+    opacity: 0.45;
+  }
+  .cover-content { position: relative; z-index: 2; text-align: center; padding: 2rem; }
+  .cover-eyebrow {
+    font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.9rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900; color: #ffffff; line-height: 1.05;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: 400; color: rgba(255,255,255,0.9);
+    margin-top: 0.75rem; font-style: italic;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .cover-divider {
+    width: 80px; height: 3px; background: var(--gold);
+    margin: 1.5rem auto;
+  }
+  .cover-details {
+    display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .cover-detail {
+    text-align: center; color: rgba(255,255,255,0.9);
+  }
+  .cover-detail .label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem;
+  }
+  .cover-detail .value {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+  }
+  .cover-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.6); font-size: 0.8rem; letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* ── OVERVIEW STATS ── */
+  .stats-bar {
+    background: var(--ocean); color: white;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+  }
+  .stat {
+    flex: 1; min-width: 140px; padding: 1.5rem 1rem;
+    text-align: center; border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; margin-top: 0.25rem; }
+
+  /* ── OVERVIEW SECTION ── */
+  .overview {
+    max-width: 900px; margin: 3rem auto; padding: 0 1.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+    color: var(--ocean); margin-bottom: 1rem;
+    border-bottom: 2px solid var(--gold); padding-bottom: 0.5rem;
+  }
+  .overview-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;
+  }
+  @media (max-width: 600px) { .overview-grid { grid-template-columns: 1fr; } }
+  .overview-box {
+    background: white; border-radius: 12px; padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--ocean);
+  }
+  .overview-box h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ocean);
+    margin-bottom: 0.75rem;
+  }
+  .overview-box ul { list-style: none; }
+  .overview-box ul li { padding: 0.3rem 0; font-size: 0.9rem; color: var(--text); }
+  .overview-box ul li::before { content: "→ "; color: var(--gold); font-weight: 700; }
+
+  /* ── PHASE BANNER ── */
+  .phase-banner {
+    max-width: 900px; margin: 3rem auto 1.5rem; border-radius: 12px;
+    overflow: hidden;
+  }
+  .phase-inner {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    color: white; padding: 1rem 2rem; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── DAY CARDS ── */
+  .day-card {
+    max-width: 900px; margin: 0 auto 2rem;
+    background: var(--card-bg); border-radius: 16px;
+    overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .day-img {
+    width: 100%; height: 280px; object-fit: cover;
+    display: block;
+  }
+  .day-header {
+    padding: 1.5rem 1.5rem 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .day-num {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem;
+  }
+  .day-date {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    color: var(--text);
+  }
+  .day-route {
+    font-size: 1rem; color: var(--ocean); margin-top: 0.25rem; font-weight: 500;
+  }
+  .arrow { color: var(--gold); }
+  .day-meta { margin-top: 0.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .nm-pill {
+    background: var(--ocean-light); color: var(--ocean);
+    font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+  }
+  .badge {
+    font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.7rem;
+    border-radius: 20px; color: white;
+  }
+  .badge.harbour { background: var(--ocean); }
+  .badge.anchor   { background: var(--green); }
+  .badge.passage  { background: var(--night); }
+  .badge.home     { background: #8a4a1a; }
+
+  .day-body { padding: 1.5rem; }
+  .highlights { list-style: none; margin-bottom: 1rem; }
+  .highlights li {
+    padding: 0.4rem 0 0.4rem 1.5rem; font-size: 0.92rem; line-height: 1.5;
+    position: relative; color: var(--text);
+  }
+  .highlights li::before { content: "•"; color: var(--gold); position: absolute; left: 0; font-size: 1.1rem; }
+
+  .overnight-note {
+    background: #f0f7ff; border-left: 3px solid var(--ocean);
+    padding: 0.6rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.88rem;
+    margin-bottom: 0.75rem; color: var(--ocean);
+  }
+  .tip {
+    background: #fffbf0; border-left: 3px solid var(--gold);
+    padding: 0.6rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.85rem;
+    margin-bottom: 0.5rem; color: #5a4a00;
+  }
+  .wind {
+    background: #f0f8f4; border-left: 3px solid var(--green);
+    padding: 0.6rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.85rem;
+    color: var(--green);
+  }
+
+  /* ── OVERNIGHT PASSAGE CARD ── */
+  .passage-card { background: var(--night); color: white; }
+  .passage-card .day-body { padding: 1.5rem; }
+  .passage-card .highlights li { color: rgba(255,255,255,0.9); }
+  .passage-card .highlights li::before { color: var(--gold); }
+  .passage-card .tip {
+    background: rgba(255,255,255,0.08); border-left-color: var(--gold);
+    color: rgba(255,255,255,0.85);
+  }
+  .passage-overlay {
+    background: linear-gradient(to top, rgba(10,15,50,0.95) 0%, rgba(10,15,50,0.4) 100%);
+    padding: 2rem 1.5rem 1.5rem;
+    margin-top: -4px;
+  }
+  .passage-title {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.1em;
+  }
+  .passage-sub { color: rgba(255,255,255,0.9); font-size: 1rem; margin-top: 0.3rem; }
+  .passage-nm { color: var(--gold); font-size: 0.85rem; margin-top: 0.25rem; font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ocean); color: rgba(255,255,255,0.7);
+    text-align: center; padding: 3rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-title {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; margin-bottom: 0.5rem;
+  }
+  .footer-sub { font-size: 0.85rem; line-height: 1.8; }
+
+  /* ── NOTES ── */
+  .notes-section {
+    max-width: 900px; margin: 3rem auto; padding: 0 1.5rem;
+  }
+  .notes-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;
+  }
+  @media (max-width: 600px) { .notes-grid { grid-template-columns: 1fr; } }
+  .note-box {
+    background: white; border-radius: 12px; padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .note-box h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem; border-bottom: 2px solid;
+  }
+  .note-box.blue h3 { color: var(--ocean); border-color: var(--ocean); }
+  .note-box.gold h3 { color: #8a6800; border-color: var(--gold); }
+  .note-box.green h3 { color: var(--green); border-color: var(--green); }
+  .note-box.night h3 { color: var(--night); border-color: var(--night); }
+  .note-box p, .note-box li { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+  .note-box ul { padding-left: 1rem; }
+
+  /* Main wrapper */
+  main { padding: 0 1rem 2rem; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-content">
+    <div class="cover-eyebrow">Sailing Itinerary · June–July 2026</div>
+    <div class="cover-title">Good Vibrations</div>
+    <div class="cover-subtitle">Vrboska to the Ionian Islands & Back</div>
+    <div class="cover-divider"></div>
+    <div class="cover-details">
+      <div class="cover-detail">
+        <div class="label">Vessel</div>
+        <div class="value">55ft Beneteau Oceanis</div>
+      </div>
+      <div class="cover-detail">
+        <div class="label">Departs</div>
+        <div class="value">16 June 2026</div>
+      </div>
+      <div class="cover-detail">
+        <div class="label">Returns</div>
+        <div class="value">6 July 2026</div>
+      </div>
+      <div class="cover-detail">
+        <div class="label">Route</div>
+        <div class="value">Croatia → Greece → Croatia</div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-scroll">▼ scroll</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">801</div><div class="stat-label">Nautical Miles</div></div>
+  <div class="stat"><div class="stat-num">21</div><div class="stat-label">Days at Sea</div></div>
+  <div class="stat"><div class="stat-num">2</div><div class="stat-label">Overnight Passages</div></div>
+  <div class="stat"><div class="stat-num">14</div><div class="stat-label">Nights at Anchor</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Harbour Nights</div></div>
+  <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Islands Visited</div></div>
+</div>
+
+<!-- MAP LINK -->
+<div style="max-width:900px;margin:2rem auto 0;padding:0 1.5rem;">
+  <div style="background:linear-gradient(135deg,#1a2456,#0d5c8a);border-radius:16px;padding:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+    <div>
+      <div style="color:#c9a227;font-size:0.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem">Interactive Route Map</div>
+      <div style="color:white;font-family:Georgia,serif;font-size:1.3rem;font-weight:700">🗺️ Real coastal sailing routes</div>
+      <div style="color:rgba(255,255,255,0.75);font-size:0.85rem;margin-top:.3rem">All 23 legs plotted around actual coastlines using sea-lane routing. Click markers for details.</div>
+    </div>
+    <a href="https://drive.google.com/file/d/1pwZiS2EtiQN1tLqN9SGBuvs5rwidPUhB/view" 
+       target="_blank"
+       style="background:#c9a227;color:#1a1a2e;padding:.75rem 1.5rem;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;white-space:nowrap;">
+      Open Map →
+    </a>
+  </div>
+</div>
+
+<main>
+<!-- OVERVIEW -->
+<div class="overview">
+  <h2 class="section-title">The Plan</h2>
+  <p style="font-size:1rem; line-height:1.8; color:var(--muted)">
+    Three weeks aboard <em>Good Vibrations</em>, sailing from Vrboska, Hvar down the Dalmatian coast,
+    through Dubrovnik, across to Corfu, and deep into the Ionian Islands of Greece —
+    then back again. Two overnight passages to mark the transitions. A week of Ionian exploration
+    with guests. And plenty of quiet anchorages, swimming stops, and taverna dinners.
+  </p>
+
+  <div class="overview-grid">
+    <div class="overview-box">
+      <h3>📅 Key Dates</h3>
+      <ul>
+        <li>June 16 — Depart Vrboska</li>
+        <li>June 18 — Overnight stop: Dubrovnik</li>
+        <li>June 19–20 — <strong>Overnight Passage 1</strong>: Croatia → Corfu</li>
+        <li>June 22 — Arrive Lefkada/Ionian area</li>
+        <li>June 23 — Pick up guests at Preveza airport</li>
+        <li>June 30 — Drop guests at Preveza, farewell</li>
+        <li>July 2–3 — <strong>Overnight Passage 2</strong>: Corfu → Dubrovnik</li>
+        <li>July 6 — Arrive home, Vrboska 🎉</li>
+      </ul>
+    </div>
+    <div class="overview-box">
+      <h3>🗺️ Destinations</h3>
+      <ul>
+        <li>Korčula, Mljet, Dubrovnik (Croatia)</li>
+        <li>Corfu, Paxos & Antipaxos (NW Greece)</li>
+        <li>Lefkada & Meganisi</li>
+        <li>Ithaka (Homer's island)</li>
+        <li>Fiskardo & Kefalonia</li>
+        <li>Porto Katsiki, Sivota, Atokos</li>
+        <li>Lopud, Mljet, Korčula (return)</li>
+      </ul>
+    </div>
+    <div class="overview-box">
+      <h3>⚓ Accommodation Split</h3>
+      <ul>
+        <li><strong>13 nights</strong> at anchor — free, peaceful, scenic</li>
+        <li><strong>7 nights</strong> in harbour — showers, provisions, restaurants</li>
+        <li><strong>2 nights</strong> at sea — the adventure</li>
+        <li>Target: max 1/3 harbour nights ✓</li>
+      </ul>
+    </div>
+    <div class="overview-box">
+      <h3>👥 Crew</h3>
+      <ul>
+        <li>Gunnar & Dóra — full voyage</li>
+        <li>Daughter & husband — June 23–30</li>
+        <li>Preveza/Aktion Airport (PVK)</li>
+        <li>Pickup & dropoff at Preveza marina</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- DAY CARDS -->
+
+    <div class="phase-banner" style="background:#1a6b8a">
+        <div class="phase-inner">Outbound: Croatia to Greece</div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/4944209/pexels-photo-4944209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Korčula Town" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 1</div>
+            <div class="day-date">Monday, June 16</div>
+            <div class="day-route">Vrboska, Hvar <span class="arrow">→</span> Korčula Town</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 30 nm</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Depart Vrboska early morning, east along Hvar island</li><li>🏊 Swim stop at <strong>Badija Island</strong> — Franciscan monastery, sandy beach, crystal-clear water</li><li>Afternoon arrival into Korčula's stunning medieval harbour</li><li>Evening: Walk the old town walls, visit the alleged birthplace of Marco Polo</li><li>Dinner ashore at a waterfront konoba</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Korčula Town harbour (harbour night)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Approach from the east channel. Marina Korčula has easy berthing for a 55ft vessel.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW Maestral typically 10-15kt in afternoon. Comfortable beam reach from Hvar.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/15211383/pexels-photo-15211383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Polače, Mljet" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 2</div>
+            <div class="day-date">Tuesday, June 17</div>
+            <div class="day-route">Korčula Town <span class="arrow">→</span> Polače, Mljet</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 25 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning departure, sail west along Korčula island then south through Mljet channel</li><li>🏊 Swim stop at <strong>Okuklje Bay</strong> — sheltered turquoise cove on east Mljet</li><li>Anchor in <strong>Polače Bay</strong> inside Mljet National Park — Roman ruins on the shore</li><li>Explore the famous salt lakes by dinghy or walk</li><li>Quiet evening at anchor — this is one of the most peaceful anchorages in Croatia</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Polače Bay, Mljet National Park (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Anchor in 4-8m, good holding sand/mud. Polače has a small quay for dinghies and a national park entrance nearby.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Light to moderate NW. Mljet channel is well sheltered.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/16908385/pexels-photo-16908385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dubrovnik" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 3</div>
+            <div class="day-date">Wednesday, June 18</div>
+            <div class="day-route">Mljet <span class="arrow">→</span> Dubrovnik</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 35 nm</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning sail east, passing the Elafiti islands</li><li>🏊 Lunch anchor at <strong>Šipan island</strong> — beautiful olive groves and a quiet bay</li><li>Afternoon arrival Dubrovnik — ACI Marina or Gruž harbour</li><li>Afternoon: Walk the legendary old city walls (2km, breathtaking views)</li><li>Evening: Stradun promenade, dinner in the old town — a true bucket-list night</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> ACI Marina Dubrovnik or Gruž (harbour night)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Book marina in advance for June. Alternatively anchor off Cavtat (10nm south) for a quieter, cheaper option if Dubrovnik is full.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Can be gusty approaching Dubrovnik. Watch for Bora squalls off the mountains.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/27486484/pexels-photo-27486484.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cavtat (overnight departure)" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 4</div>
+            <div class="day-date">Thursday, June 19</div>
+            <div class="day-route">Dubrovnik <span class="arrow">→</span> Cavtat (overnight departure)</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 12 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Short morning sail south to <strong>Cavtat</strong> — beautiful bay, charming Venetian town</li><li>Afternoon: Rest, provision, fuel, weather briefing for the overnight passage</li><li>Early dinner, short nap — <strong>depart 21:00–22:00</strong> for the big overnight</li><li>🌟 <strong>OVERNIGHT PASSAGE BEGINS</strong> — Cavtat to Corfu, ~155 nautical miles</li><li>Watch system: 3-hour watches. Expect arrival in Corfu late Friday afternoon</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Underway — overnight passage to Corfu</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Cavtat anchorage: 3–6m, clear water, good holding. Check weather carefully — ideal conditions are NW 10-15kt or calm. The route passes through international waters and the Corfu Channel.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Check forecast carefully. Etesian (Meltemi) not yet strong in June — usually pleasant conditions for this passage.</div>
+        </div>
+    </div>
+    <div class="phase-banner" style="background:#2c3e6b">
+        <div class="phase-inner">Overnight Passage</div>
+    </div>
+    <div class="day-card passage-card">
+        <img class="day-img" src="https://images.pexels.com/photos/27486484/pexels-photo-27486484.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Overnight passage" loading="lazy" />
+        <div class="passage-overlay">
+            <div class="passage-title">⭐ OVERNIGHT PASSAGE</div>
+            <div class="passage-sub">Cavtat → Corfu, Greece</div>
+            <div class="passage-nm">155 nautical miles</div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>🌙 <strong>Night 1 at sea</strong> — your first overnight offshore passage</li><li>Route: SSW from Cavtat, past the Albanian coast well offshore, into the Corfu Channel</li><li>Spectacular stargazing in open water — no light pollution</li><li>Watch system: 3 hours on, 3 hours off (2 people = each stands two watches per night)</li><li>🌅 Dawn at sea — one of sailing's great experiences</li><li>Arrive Corfu Channel mid-to-late afternoon, Friday</li></ul>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> AIS is your friend — commercial traffic in the Corfu Channel. Ionian VHF Ch16. Keep Albania 12nm to port to stay in international waters. If wind is absent, motor-sail at 6-7kts to arrive before dark.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/33413550/pexels-photo-33413550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Corfu Town" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 5</div>
+            <div class="day-date">Friday, June 20</div>
+            <div class="day-route">Corfu Channel <span class="arrow">→</span> Corfu Town</div>
+            <div class="day-meta"><span class="nm-pill">⚓ passage</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>🎉 <strong>Welcome to Greece!</strong> — arrive Corfu after your first offshore passage</li><li>Rest, shower, celebrate with a cold Fix beer</li><li>Corfu Old Town: UNESCO World Heritage — stunning Venetian architecture, two fortresses</li><li>Evening: Liston promenade, excellent Greek food, legendary hospitality</li><li>Early night — well deserved!</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Gouvia Marina or Old Port, Corfu (harbour night)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Gouvia Marina (5nm north of Corfu Town) is well-equipped and easy. Corfu Old Port is atmospheric but can be crowded.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Rest day. Let the crew recover.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/28587434/pexels-photo-28587434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Paxos" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 6</div>
+            <div class="day-date">Saturday, June 21</div>
+            <div class="day-route">Corfu <span class="arrow">→</span> Paxos</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 28 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning departure south, beautiful sail through the turquoise Ionian</li><li>🏊 <strong>Antipaxos</strong> — one of the most beautiful beaches in Greece. Anchor off <strong>Voutoumi Beach</strong>: white sand, impossibly blue water. Swim, lunch, linger.</li><li>Afternoon sail to Paxos — tiny, enchanting island covered in ancient olive groves</li><li>Anchor at <strong>Lakka Bay</strong> (north Paxos) — stunning horseshoe bay</li><li>Evening: Walk to Lakka village for dinner at a classic Greek taverna</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Lakka Bay, Paxos (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Antipaxos is best in the morning before charter fleets arrive. Voutoumi is exposed to NW — if swell, prefer Vrika beach on the west side. Lakka: anchor in 3-6m, excellent holding.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Typically NW 10-20kt, perfect broad reach south from Corfu.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/13443335/pexels-photo-13443335.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Nidri/Lefkada" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 7</div>
+            <div class="day-date">Sunday, June 22</div>
+            <div class="day-route">Paxos <span class="arrow">→</span> Nidri/Lefkada</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 45 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Early departure — longer day to position for tomorrow's guest pickup</li><li>🏊 Swim stop at <strong>Sivota</strong> (mainland coast) — spectacular turquoise lagoon, one of the most beautiful anchorages in Greece</li><li>Through Preveza narrows and into the Lefkada Channel — beautiful inland sea feel</li><li>Anchor in <strong>Dessimi Bay or Vlicho Bay</strong>, south Lefkada — sheltered, scenic, peaceful</li><li>Final evening just the two of you — prepare the boat for guests tomorrow</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Dessimi Bay, Lefkada (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Sivota (mainland) has a small beach taverna — excellent fresh fish. Dessimi: anchor in 4-8m, sand, beautiful surroundings.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW 15-20kt. Good sailing day. Pass through Preveza narrows (VHF Ch16, straightforward).</div>
+        </div>
+    </div>
+    <div class="phase-banner" style="background:#2a6b3a">
+        <div class="phase-inner">Ionian Islands with Guests</div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/445363/pexels-photo-445363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Preveza → Meganisi" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 8</div>
+            <div class="day-date">Monday, June 23</div>
+            <div class="day-route">Dessimi, Lefkada <span class="arrow">→</span> Preveza → Meganisi</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 15 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning: Drive or taxi to <strong>Preveza/Aktion Airport</strong> to collect your daughter and son-in-law 🎉</li><li>Return to boat, short orientation, settle in, cold drinks on deck</li><li>Afternoon sail to <strong>Meganisi</strong> — lush, unspoiled island</li><li>🏊 Swim at <strong>Papageorges Cove</strong> (Number 7 Bay) — dramatic limestone cliffs</li><li>Anchor at <strong>Vathy, Meganisi</strong> — intimate harbour with excellent tavernas</li><li>Welcome dinner ashore — first taste of proper Greek island life for the guests</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Vathy, Meganisi (small harbour/quay)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Airport is Preveza/Aktion (PVK). 10-min drive to marina. Vathy is a beautiful small quay — arrive by 16:00 for a good spot.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Light afternoon sailing, pleasant introduction for guests.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/31997280/pexels-photo-31997280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fiskardo, Kefalonia" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 9</div>
+            <div class="day-date">Tuesday, June 24</div>
+            <div class="day-route">Meganisi <span class="arrow">→</span> Fiskardo, Kefalonia</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 20 nm</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning departure across to north Kefalonia</li><li>🏊 Swim stop at <strong>Emblisi Beach</strong> near Fiskardo — secluded pebble beach, gin-clear water</li><li>Afternoon arrival <strong>Fiskardo</strong> — the most elegant village in the Ionian</li><li>Beautifully preserved Venetian architecture, upscale restaurants, charming atmosphere</li><li>Evening: Dinner at one of Fiskardo's famous waterfront restaurants — the place to splash out</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Fiskardo Town harbour (harbour night)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Fiskardo fills up fast in summer. Arrive by 14:00 for a quayside berth. Med-moor to the town quay.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW 10-15kt, comfortable reach south across to Kefalonia.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/7962518/pexels-photo-7962518.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Assos → Frikes, Ithaka" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 10</div>
+            <div class="day-date">Wednesday, June 25</div>
+            <div class="day-route">Fiskardo <span class="arrow">→</span> Assos → Frikes, Ithaka</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 25 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning sail south along Kefalonia's dramatic west coast</li><li>🏊 <strong>Assos Bay</strong> — anchor below the stunning Venetian castle ruin, crystal water, swim and explore</li><li>Optional: Dinghy ashore to visit the beautiful village of Assos</li><li>Afternoon crossing to <strong>Ithaka</strong> — Homer's island, birthplace of Odysseus</li><li>Anchor at <strong>Frikes</strong> — pretty whitewashed village, excellent fish tavernas right on the water</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Frikes, Ithaka (anchor/quay)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Assos Bay: anchor in 5-10m off the village beach, beautiful clear water. Frikes: anchor or pick up a buoy, well sheltered.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW sea breeze afternoon. Easy conditions for guests.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/18095548/pexels-photo-18095548.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Vathi, Ithaka" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 11</div>
+            <div class="day-date">Thursday, June 26</div>
+            <div class="day-route">Frikes <span class="arrow">→</span> Vathi, Ithaka</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 15 nm</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Slow morning — sail south inside Ithaka island, visiting Kioni village en route</li><li>🏊 <strong>Sarakiniko Beach</strong> — Ithaka's most beautiful anchorage, sheltered turquoise bay</li><li>Afternoon arrival <strong>Vathi</strong> — Ithaka's legendary horseshoe harbour</li><li>Town is charming: Archaeological Museum, Odysseus references everywhere</li><li>Evening: Best dinner of the trip at a Vathi waterfront taverna</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Vathi, Ithaka (harbour)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Kioni is beautiful but small — good for lunch stop in calm conditions. Vathi: med-moor on the town quay, very reasonable fees.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Light — sailing slowly down Ithaka's east coast is wonderful.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/445363/pexels-photo-445363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Atokos → Meganisi" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 12</div>
+            <div class="day-date">Friday, June 27</div>
+            <div class="day-route">Vathi, Ithaka <span class="arrow">→</span> Atokos → Meganisi</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 25 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning departure north — today's theme: wild and remote</li><li>🏊 <strong>Atokos Island</strong> — uninhabited, dramatic limestone, pristine water. Anchor and swim off the boat</li><li>The definition of 'off the beaten track' — you may have the bay entirely to yourselves</li><li>Afternoon sail to Meganisi's north coast</li><li>Anchor at <strong>Atherinos Bay</strong> — another stunningly beautiful cove</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Atherinos Bay, Meganisi (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Atokos: anchor in the south bay in 5-8m, good holding. A true highlight — bring the snorkelling gear.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW 15-20kt. Good sailing day, guests getting their sea legs!</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/13443335/pexels-photo-13443335.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Porto Katsiki, Lefkada → Vasiliki" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 13</div>
+            <div class="day-date">Saturday, June 28</div>
+            <div class="day-route">Meganisi <span class="arrow">→</span> Porto Katsiki, Lefkada → Vasiliki</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 20 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>North through Meganisi, up Lefkada's dramatic west coast</li><li>🏊 <strong>Porto Katsiki</strong> — arguably the most spectacular beach in the Ionian. White cliffs, turquoise water. Anchor and ferry in by dinghy.</li><li>Optional: <strong>Egremni Beach</strong> nearby — even wilder, fewer visitors</li><li>Afternoon anchor in <strong>Vasiliki Bay</strong> — sheltered, beautiful, world-famous windsurfing spot</li><li>Sundowners in the cockpit watching the windsurfers</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Vasiliki Bay, Lefkada (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Porto Katsiki: anchor in 8-12m off the beach in calm. If NW swell is present, view from the boat and proceed — it's still spectacular. Vasiliki: anchor in the SE corner, 4-6m.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Can be breezy rounding south Lefkada — exhilarating sail.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/13443335/pexels-photo-13443335.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Parga (mainland) or Nidri" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 14</div>
+            <div class="day-date">Sunday, June 29</div>
+            <div class="day-route">Vasiliki, Lefkada <span class="arrow">→</span> Parga (mainland) or Nidri</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 20 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Relaxed final full day with guests</li><li>🏊 Morning swim — last dip in the Ionian for the guests</li><li>Option A: Sail to <strong>Parga</strong> (mainland) — one of Greece's most picturesque towns, Venetian castle, beautiful beach</li><li>Option B: Leisurely sail to Nidri, Lefkada — easy and close to Preveza for tomorrow</li><li>Final dinner together — cook on board or find a good taverna</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Parga or Nidri, Lefkada (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Parga is a beautiful detour if weather allows. Nidri is closer to Preveza (20nm) which makes the guest departure day easier.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Check conditions. If calm, Parga is a lovely last stop.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/13443335/pexels-photo-13443335.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Preveza (farewell)" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 15</div>
+            <div class="day-date">Monday, June 30</div>
+            <div class="day-route">Nidri/Lefkada <span class="arrow">→</span> Preveza (farewell)</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 20 nm</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning sail north through Lefkada Channel to Preveza</li><li>🥂 Final breakfast/brunch on deck at anchor</li><li>Drop guests at Preveza marina for their flight</li><li>Hugs, goodbyes, promises to do it again next year</li><li>Afternoon: Provision, fuel, laundry, plan the return leg</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Preveza Marina (harbour night)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Preveza Marina is well-equipped. Good supermarket nearby. Chandlery and fuel berth available.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Easy morning sail north.</div>
+        </div>
+    </div>
+    <div class="phase-banner" style="background:#8a4a1a">
+        <div class="phase-inner">Return: Greece to Croatia</div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/28587434/pexels-photo-28587434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Paxos" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 16</div>
+            <div class="day-date">Tuesday, July 1</div>
+            <div class="day-route">Preveza <span class="arrow">→</span> Paxos</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 45 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Just you and Dóra again — tranquil return begins</li><li>Morning departure north through Preveza narrows</li><li>🏊 <strong>Antipaxos again</strong> — less crowded on a Tuesday, pure magic</li><li>Or explore the famous <strong>Blue Caves of Paxos</strong> (west coast, go by dinghy)</li><li>Anchor in <strong>Mongonisi</strong> or <strong>Lakka</strong> for a quiet night</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Mongonisi or Lakka, Paxos (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Mongonisi: small bay on the south tip of Paxos, great snorkelling. Walk to the islet's tiny chapel.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW trade wind — nice long reach north.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/33413550/pexels-photo-33413550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Corfu (overnight departure)" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 17</div>
+            <div class="day-date">Wednesday, July 2</div>
+            <div class="day-route">Paxos <span class="arrow">→</span> Corfu (overnight departure)</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 28 nm</span> &nbsp; <span class="badge harbour">🏛️ Harbour night</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Short sail north to Corfu — arrive by early afternoon</li><li>🏊 <strong>Palaiokastritsa</strong> on Corfu's west coast — one of the island's most beautiful bays. Turquoise bays, monastery on the hill.</li><li>Afternoon: Provision, fuel, weather check for overnight passage</li><li>Last Greek dinner — stock the boat for 24 hours at sea</li><li><strong>Depart 21:00–22:00</strong> for overnight passage back to Croatia</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Underway — overnight passage to Dubrovnik</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Palaiokastritsa: anchor in one of the bays in 4-8m. Gouvia Marina is a good departure base for the overnight.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Check 48h forecast before committing. Ideal: NW 10-15kt or calm.</div>
+        </div>
+    </div>
+    <div class="day-card passage-card">
+        <img class="day-img" src="https://images.pexels.com/photos/27486484/pexels-photo-27486484.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Overnight passage" loading="lazy" />
+        <div class="passage-overlay">
+            <div class="passage-title">⭐ OVERNIGHT PASSAGE</div>
+            <div class="passage-sub">Corfu → Dubrovnik, Croatia</div>
+            <div class="passage-nm">155 nautical miles</div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>🌙 <strong>Night 2 at sea</strong> — you know what you're doing now. This one feels different.</li><li>Reverse route: NNE through the Corfu Channel, past Albanian coast, into the Adriatic</li><li>Watch system as before: 3 hours on, 3 hours off</li><li>🌅 Dawn at sea — Dalmatian islands appear on the horizon</li><li>Arrive Dubrovnik area Thursday afternoon</li></ul>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> You're experienced overnight sailors now. Enjoy it. The Adriatic is calmer than the night down.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/30344044/pexels-photo-30344044.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Lopud Island" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 18</div>
+            <div class="day-date">Thursday, July 3</div>
+            <div class="day-route">Offshore <span class="arrow">→</span> Lopud Island</div>
+            <div class="day-meta"><span class="nm-pill">⚓ passage</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Arrive Elafiti Islands area after the overnight — a gentler return than busy Dubrovnik</li><li><strong>Lopud Island</strong> — car-free, beautiful, one of Croatia's hidden gems</li><li>🏊 <strong>Šunj Beach</strong> — the most beautiful sandy beach in Dalmatia. A rarity in Croatia.</li><li>Long afternoon rest, swim, recover from the passage</li><li>Quiet dinner at the island's small restaurant</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Šunj Bay, Lopud Island (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Anchor in Šunj Bay in 3-5m, sand, excellent holding. Alternatively, moor at the Lopud village quay on the north side.</div>
+            <div class="wind"><strong>💨 Wind:</strong> Rest and recovery day.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/15211383/pexels-photo-15211383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mljet (Saplunara)" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 19</div>
+            <div class="day-date">Friday, July 4</div>
+            <div class="day-route">Lopud <span class="arrow">→</span> Mljet (Saplunara)</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 28 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Beautiful westward sail along the outer Elafiti islands</li><li>🏊 <strong>Saplunara Beach</strong> on east Mljet — one of Croatia's finest beaches, remote, sandy, spectacular</li><li>Anchor in the lagoon — wade ashore through the shallows</li><li>Afternoon: Sail to the calmer western bay of Mljet</li><li>Peaceful anchorage, pine forest to the water's edge</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Okuklje Bay, east Mljet (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> Saplunara lagoon: anchor in 1.5-2.5m (shallower than it looks on chart — reconnoitre with dinghy first for GV). Alternatively anchor just outside and dinghy in.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW, comfortable reach west.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/12604474/pexels-photo-12604474.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Korčula island" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 20</div>
+            <div class="day-date">Saturday, July 5</div>
+            <div class="day-route">Mljet <span class="arrow">→</span> Korčula island</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 25 nm</span> &nbsp; <span class="badge anchor">⚓ At anchor</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Morning sail west through the Mljet channel</li><li>🏊 Swim at <strong>Prižba Bay</strong> on south Korčula island — completely unspoiled, few visitors</li><li>Explore the quieter south side of Korčula island</li><li>Anchor in <strong>Bačva Bay</strong> or <strong>Prižba</strong> — calm, clear, secluded</li><li>Last sunset at anchor — savour it</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Prižba or Bačva Bay, Korčula Island (anchor)</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> South Korčula bays: mostly sand and clear water, 3-6m. Much quieter than Korčula Town.</div>
+            <div class="wind"><strong>💨 Wind:</strong> NW, comfortable conditions for the homeward stretch.</div>
+        </div>
+    </div>
+    <div class="day-card">
+        <img class="day-img" src="https://images.pexels.com/photos/4944209/pexels-photo-4944209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Vrboska, Hvar 🏠" loading="lazy" />
+        <div class="day-header">
+            <div class="day-num">Day 21</div>
+            <div class="day-date">Sunday, July 6</div>
+            <div class="day-route">Korčula Island <span class="arrow">→</span> Vrboska, Hvar 🏠</div>
+            <div class="day-meta"><span class="nm-pill">⛵ 30 nm</span> &nbsp; <span class="badge home">🏠 Home port</span></div>
+        </div>
+        <div class="day-body">
+            <ul class="highlights"><li>Final day — the homecoming sail</li><li>🏊 One last swim at the <strong>Pakleni Islands</strong> off Hvar — turquoise lagoons, pine forest, perfection</li><li>Sail through the Hvar Channel, past Hvar Town</li><li>Afternoon arrival in <strong>Vrboska</strong> — GV back in her berth</li><li>🥂 Champagne on deck. 21 days, 2 countries, 2 overnight passages. Mission accomplished.</li></ul>
+            <div class="overnight-note"><strong>🌙 Overnight:</strong> Vrboska, Hvar — home berth</div>
+            <div class="tip"><strong>🧭 Navigation tip:</strong> If arriving late, anchor off Pakleni first and spend one last night in paradise.</div>
+            <div class="wind"><strong>💨 Wind:</strong> End as you began — the Maestral, your old friend, pushing you home.</div>
+        </div>
+    </div>
+
+<!-- PRACTICAL NOTES -->
+<div class="notes-section">
+  <h2 class="section-title">Practical Notes</h2>
+  <div class="notes-grid">
+    <div class="note-box blue">
+      <h3>🌙 Overnight Passages</h3>
+      <ul>
+        <li>Both crossings are ~155nm / 24-26 hours at 6-7kts</li>
+        <li>Watch system: 2-person crew = 3hrs on / 3hrs off</li>
+        <li>Depart evening (~21:00) to arrive next afternoon</li>
+        <li>Ideal conditions: NW 10-15kt or calm. Check forecast 48hrs before</li>
+        <li>Always have a bail-out plan (nearest port) if weather deteriorates</li>
+        <li>AIS on, nav lights on, VHF monitoring Ch16 throughout</li>
+      </ul>
+    </div>
+    <div class="note-box gold">
+      <h3>⚓ Anchoring Tips</h3>
+      <ul>
+        <li>55ft boat needs 30-50m of chain typically</li>
+        <li>Ionian: mostly sand and mud — excellent holding</li>
+        <li>Croatia: more rock and weed — Danforth/Bruce preferred</li>
+        <li>June is pre-peak: anchorages much less crowded than July/August</li>
+        <li>Always have stern lines + fenders for tight spots</li>
+        <li>Preferred depth: 4-8m with good swinging room</li>
+      </ul>
+    </div>
+    <div class="note-box green">
+      <h3>🌬️ Weather: June Conditions</h3>
+      <ul>
+        <li><strong>Adriatic:</strong> NW Maestral builds 10-20kt afternoon, dies at night. Comfortable sailing.</li>
+        <li><strong>Ionian:</strong> Light to moderate NW winds (Etesian/Meltemi starts later in summer). Very pleasant sailing in June.</li>
+        <li><strong>Overnight passages:</strong> Often calmer at night. Plan accordingly.</li>
+        <li>Use Windy app, PredictWind, or NOAA GRIB files daily</li>
+        <li>Ionian VHF Met forecast: Ch16 + local stations</li>
+      </ul>
+    </div>
+    <div class="note-box night">
+      <h3>📋 Formalities & Paperwork</h3>
+      <ul>
+        <li>Cruising permit (CEVNI equivalent) for Greek waters — arrange before departure</li>
+        <li>Greece: Transit Log (DEKPA) from first port of entry (Corfu)</li>
+        <li>Ensure all crew passports/IDs are valid</li>
+        <li>Croatian waters: registration papers, insurance, competency certificate</li>
+        <li>Notify Preveza port authority on arrival as base port</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="footer">
+  <div class="footer-title">Good Vibrations — Ionian 2026</div>
+  <div class="footer-sub">
+    Prepared for Gunnar & Dóra Thoroddsen · Vrboska, Hvar, Croatia<br/>
+    55ft Beneteau Oceanis · June 16 – July 6, 2026<br/><br/>
+    <em>"Not all those who wander are lost."</em>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_61e33967818b5f6d6830d05e94b97dea {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    bottom: 30px; left: 30px;
+    z-index: 9999;
+    background: rgba(255,255,255,0.96);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    font-family: sans-serif;
+    min-width: 220px;
+    border: 1px solid #e0e8f0;
+">
+  <div style="font-weight:700;font-size:14px;color:#1a2456;margin-bottom:10px;border-bottom:2px solid #c9a227;padding-bottom:6px">
+    ⛵ Good Vibrations · 2026
+  </div>
+  
+  <div style="font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Route</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+    <div style="width:30px;height:3px;background:#1a6b8a;"></div>
+    <span style="font-size:12px;color:#333">Outbound (Croatia → Greece)</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+    <div style="width:30px;height:3px;background:#2a8a3a;"></div>
+    <span style="font-size:12px;color:#333">With Guests (Ionian)</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+    <div style="width:30px;height:3px;background:#c9670a;"></div>
+    <span style="font-size:12px;color:#333">Return (Greece → Croatia)</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+    <div style="width:30px;height:3px;background:#2c3e6b;border-top:2px dashed #2c3e6b;"></div>
+    <span style="font-size:12px;color:#333">🌙 Overnight passage</span>
+  </div>
+  
+  <div style="font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Stops</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+    <div style="width:12px;height:12px;border-radius:50%;background:#1a6b8a;"></div>
+    <span style="font-size:12px;color:#333">🏛️ Harbour night</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+    <div style="width:12px;height:12px;border-radius:50%;background:#2a8a3a;"></div>
+    <span style="font-size:12px;color:#333">⚓ At anchor</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+    <div style="width:12px;height:12px;border-radius:50%;background:#c0392b;"></div>
+    <span style="font-size:12px;color:#333">👥 Guest pickup/dropoff</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div style="width:12px;height:12px;border-radius:50%;background:#1a2456;"></div>
+    <span style="font-size:12px;color:#333">🏠 Home port</span>
+  </div>
+  
+  <div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:10px;color:#999">
+    Click markers for details · Layers: top-right corner
+  </div>
+</div>
+    
+<div style="
+    position: fixed;
+    top: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(13,28,70,0.92);
+    color: white;
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    pointer-events: none;
+    border: 1px solid rgba(201,162,39,0.5);
+">
+  ⛵ Good Vibrations — Ionian Islands 2026 &nbsp;·&nbsp; June 16 – July 6
+</div>
+    
+            <div class="folium-map" id="map_61e33967818b5f6d6830d05e94b97dea" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_61e33967818b5f6d6830d05e94b97dea = L.map(
+                "map_61e33967818b5f6d6830d05e94b97dea",
+                {
+                    center: [40.5, 19.5],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_39c2d528e3abd58e60849be15dffd0d7 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_39c2d528e3abd58e60849be15dffd0d7.addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var tile_layer_4a5a094d45aeb9628fc82c52d53c3dc8 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 13,
+  "maxNativeZoom": 13,
+  "noWrap": false,
+  "attribution": "Esri \u2014 Esri, GEBCO, NOAA, National Geographic",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_4a5a094d45aeb9628fc82c52d53c3dc8.addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var tile_layer_e8af898f4515fb4f10ebf5840af6f1b6 = L.tileLayer(
+                "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors \u00a9 CARTO",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e8af898f4515fb4f10ebf5840af6f1b6.addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var poly_line_9cd479b240d82951ee50bd698013a445 = L.polyline(
+                [[43.342174, 16.418491], [43.2385, 16.3457], [43.084808, 16.320196], [43.02806, 16.839582], [42.97481, 17.087139]],
+                {"bubblingMouseEvents": true, "color": "#1a6b8a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1a6b8a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_9cd479b240d82951ee50bd698013a445.bindTooltip(
+                `<div>
+                     ⛵ Vrboska, Hvar → Korčula Town
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_78d840f622e18326bfe83cc10d706d0c = L.polyline(
+                [[42.97481, 17.087139], [42.939285, 17.237615]],
+                {"bubblingMouseEvents": true, "color": "#1a6b8a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1a6b8a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_78d840f622e18326bfe83cc10d706d0c.bindTooltip(
+                `<div>
+                     ⛵ Korčula Town → Polače, Mljet
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1cac623d1fac3e0e83a86ffc9c744146 = L.polyline(
+                [[42.939285, 17.237615], [42.772042, 17.684189], [42.6272, 18.0047]],
+                {"bubblingMouseEvents": true, "color": "#1a6b8a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1a6b8a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_1cac623d1fac3e0e83a86ffc9c744146.bindTooltip(
+                `<div>
+                     ⛵ Polače, Mljet → Dubrovnik
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7f82de37485732d058c6d2446750ecbb = L.polyline(
+                [[42.6272, 18.0047]],
+                {"bubblingMouseEvents": true, "color": "#1a6b8a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1a6b8a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_7f82de37485732d058c6d2446750ecbb.bindTooltip(
+                `<div>
+                     ⛵ Dubrovnik → Cavtat
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_4ddf33ee4acc9505fb263f284619d94b = L.polyline.antPath(
+              [[42.6272, 18.0047], [42.375008, 18.047817], [41.893768, 18.130095], [41.7252, 18.158915], [41.220045, 18.245282], [40.9, 18.3], [40.590546, 18.668146], [40.494652, 18.782226], [40.459268, 18.843188], [40.361696, 19.011287], [39.8141, 19.9547], [39.6324, 19.9437]],
+              {
+  "stroke": true,
+  "color": "#2c3e6b",
+  "weight": 3.5,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#2c3e6b",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 800,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            ant_path_4ddf33ee4acc9505fb263f284619d94b.bindTooltip(
+                `<div>
+                     🌙 Overnight passage: Cavtat → Corfu Town
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_6195040571906c50c99f14947e8c5642 = L.polyline(
+                [[39.6324, 19.9437], [39.3866, 20.169]],
+                {"bubblingMouseEvents": true, "color": "#1a6b8a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1a6b8a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_6195040571906c50c99f14947e8c5642.bindTooltip(
+                `<div>
+                     ⛵ Corfu Town → Paxos (Lakka Bay)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_daaa872f52f1f266aab529b7b8577b91 = L.polyline(
+                [[39.3866, 20.169], [39.1144, 20.3557], [38.853074, 20.711914], [38.783107, 20.738611]],
+                {"bubblingMouseEvents": true, "color": "#1a6b8a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1a6b8a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_daaa872f52f1f266aab529b7b8577b91.bindTooltip(
+                `<div>
+                     ⛵ Paxos (Lakka Bay) → Dessimi Bay, Lefkada
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_7c1e3f599bd577093ebb03cdc3ce6f78 = L.polyline(
+                [[38.783107, 20.738611], [38.853074, 20.711914], [38.922972, 20.73133], [38.949402, 20.777444]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_7c1e3f599bd577093ebb03cdc3ce6f78.bindTooltip(
+                `<div>
+                     ⛵ Dessimi Bay, Lefkada → Preveza / Guest Pickup
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_54ffc18f491e9d1473f57d9ac74f2e8a = L.polyline(
+                [[38.949402, 20.777444], [38.922972, 20.73133], [38.853074, 20.711914], [38.783107, 20.738611], [38.682764, 20.804141]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_54ffc18f491e9d1473f57d9ac74f2e8a.bindTooltip(
+                `<div>
+                     ⛵ Preveza / Guest Pickup → Vathy, Meganisi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_107051877e2f0c38570ddf80bd16c1dc = L.polyline(
+                [[38.682764, 20.804141], [38.783107, 20.738611], [38.853074, 20.711914], [39.1144, 20.3557], [38.5495, 20.4876]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_107051877e2f0c38570ddf80bd16c1dc.bindTooltip(
+                `<div>
+                     ⛵ Vathy, Meganisi → Fiskardo, Kefalonia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b30bf5329ace3a88696254b385448a91 = L.polyline(
+                [[38.5495, 20.4876]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_b30bf5329ace3a88696254b385448a91.bindTooltip(
+                `<div>
+                     ⛵ Fiskardo, Kefalonia → Frikes, Ithaka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_5547f88a1cae82b15ae26bba0004995d = L.polyline(
+                [[38.5495, 20.4876], [38.1662, 20.8281]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_5547f88a1cae82b15ae26bba0004995d.bindTooltip(
+                `<div>
+                     ⛵ Frikes, Ithaka → Vathi, Ithaka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_41d679c7f684b31320f15a6a54ef8026 = L.polyline(
+                [[38.1662, 20.8281], [38.07633, 20.980307], [38.076305, 20.98035], [38.1016, 21.0568], [38.131249, 21.158505], [38.2266, 21.1468], [38.456953, 21.010439], [38.525341, 20.891514]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_41d679c7f684b31320f15a6a54ef8026.bindTooltip(
+                `<div>
+                     ⛵ Vathi, Ithaka → Atokos Island
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_1d0a173eff2ea873b6fa6280dcd1c26d = L.polyline(
+                [[38.525341, 20.891514], [38.682764, 20.804141]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_1d0a173eff2ea873b6fa6280dcd1c26d.bindTooltip(
+                `<div>
+                     ⛵ Atokos Island → Atherinos Bay, Meganisi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_301b0a7a4942673ffbae9acea3a1ba93 = L.polyline(
+                [[38.682764, 20.804141], [38.783107, 20.738611], [38.853074, 20.711914], [39.1144, 20.3557], [38.5495, 20.4876]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_301b0a7a4942673ffbae9acea3a1ba93.bindTooltip(
+                `<div>
+                     ⛵ Atherinos Bay, Meganisi → Porto Katsiki, Lefkada
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_c453fdd57e5aed41c1df89265f4e1874 = L.polyline(
+                [[38.5495, 20.4876]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_c453fdd57e5aed41c1df89265f4e1874.bindTooltip(
+                `<div>
+                     ⛵ Porto Katsiki, Lefkada → Vasiliki Bay, Lefkada
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f0cba943783e95b842aaa1fa9c31fa4d = L.polyline(
+                [[38.5495, 20.4876], [39.1144, 20.3557], [38.922972, 20.73133], [38.949402, 20.777444]],
+                {"bubblingMouseEvents": true, "color": "#2a8a3a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2a8a3a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_f0cba943783e95b842aaa1fa9c31fa4d.bindTooltip(
+                `<div>
+                     ⛵ Vasiliki Bay, Lefkada → Preveza / Farewell
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_0d639f349820372642da79d63d08c16f = L.polyline(
+                [[38.949402, 20.777444], [38.922972, 20.73133], [39.1144, 20.3557]],
+                {"bubblingMouseEvents": true, "color": "#c9670a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c9670a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_0d639f349820372642da79d63d08c16f.bindTooltip(
+                `<div>
+                     ⛵ Preveza / Farewell → Paxos (Mongonisi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d166bf500645b5691ccb4d7703b01b50 = L.polyline(
+                [[39.1144, 20.3557], [39.3866, 20.169], [39.6324, 19.9437]],
+                {"bubblingMouseEvents": true, "color": "#c9670a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c9670a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_d166bf500645b5691ccb4d7703b01b50.bindTooltip(
+                `<div>
+                     ⛵ Paxos (Mongonisi) → Corfu (Gouvia)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_9d672cf4507615decc5635473a488cab = L.polyline.antPath(
+              [[39.6324, 19.9437], [39.8141, 19.9547], [40.361696, 19.011287], [40.459268, 18.843188], [40.494652, 18.782226], [40.590546, 18.668146], [40.9, 18.3], [41.220045, 18.245282], [41.7252, 18.158915], [41.893768, 18.130095], [42.375008, 18.047817], [42.6272, 18.0047]],
+              {
+  "stroke": true,
+  "color": "#2c3e6b",
+  "weight": 3.5,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "#2c3e6b",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 800,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            ant_path_9d672cf4507615decc5635473a488cab.bindTooltip(
+                `<div>
+                     🌙 Overnight passage: Corfu (Gouvia) → Lopud Island
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_69c3b84e10eb03475d673cc92f48404c = L.polyline(
+                [[42.6272, 18.0047], [42.772042, 17.684189], [42.939285, 17.237615]],
+                {"bubblingMouseEvents": true, "color": "#c9670a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c9670a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_69c3b84e10eb03475d673cc92f48404c.bindTooltip(
+                `<div>
+                     ⛵ Lopud Island → Okuklje Bay, Mljet
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3dcfd2de358d26bb58b2f6f397572633 = L.polyline(
+                [[42.939285, 17.237615], [42.97481, 17.087139], [43.02806, 16.839582]],
+                {"bubblingMouseEvents": true, "color": "#c9670a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c9670a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_3dcfd2de358d26bb58b2f6f397572633.bindTooltip(
+                `<div>
+                     ⛵ Okuklje Bay, Mljet → Prižba, Korčula Isl.
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_e362b8b626e154a70ffce9a5840bcf95 = L.polyline(
+                [[43.02806, 16.839582], [43.084808, 16.320196], [43.2385, 16.3457], [43.342174, 16.418491]],
+                {"bubblingMouseEvents": true, "color": "#c9670a", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#c9670a", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.5, "stroke": true, "weight": 3}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            poly_line_e362b8b626e154a70ffce9a5840bcf95.bindTooltip(
+                `<div>
+                     ⛵ Prižba, Korčula Isl. → Vrboska, Hvar 🏠
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b7664556dea192429f73fdfbda4b3307 = L.marker(
+                [43.3874, 16.7057],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_6dd0597b075e7f648b6d1ae04236aac2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5f35c3dd373644427135315dfdcd5df9 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_bde68b85493c03776d4495a7aed8cfc5 = $(`<div id="html_bde68b85493c03776d4495a7aed8cfc5" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Vrboska, Hvar</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Start · June 16</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏠 Home port</div>            </div>     </div>`)[0];
+                popup_5f35c3dd373644427135315dfdcd5df9.setContent(html_bde68b85493c03776d4495a7aed8cfc5);
+            
+        
+
+        marker_b7664556dea192429f73fdfbda4b3307.bindPopup(popup_5f35c3dd373644427135315dfdcd5df9)
+        ;
+
+        
+    
+    
+            marker_b7664556dea192429f73fdfbda4b3307.bindTooltip(
+                `<div>
+                     Vrboska, Hvar — Start · June 16
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b7664556dea192429f73fdfbda4b3307.setIcon(icon_6dd0597b075e7f648b6d1ae04236aac2);
+            
+    
+            var marker_dab39bff4f4011bc8696517776b4ee0e = L.marker(
+                [42.9603, 17.134],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_9996d1067d39ebb08d6b0649c8e49d6f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c55e58bb8e79e6d4ff94539edbd63f8 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_4001a1e260cb1b25e2d6302a5845171d = $(`<div id="html_4001a1e260cb1b25e2d6302a5845171d" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Korčula Town</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 1 · June 16</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏛️ Harbour night</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~30 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_6c55e58bb8e79e6d4ff94539edbd63f8.setContent(html_4001a1e260cb1b25e2d6302a5845171d);
+            
+        
+
+        marker_dab39bff4f4011bc8696517776b4ee0e.bindPopup(popup_6c55e58bb8e79e6d4ff94539edbd63f8)
+        ;
+
+        
+    
+    
+            marker_dab39bff4f4011bc8696517776b4ee0e.bindTooltip(
+                `<div>
+                     Korčula Town — Day 1 · June 16
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dab39bff4f4011bc8696517776b4ee0e.setIcon(icon_9996d1067d39ebb08d6b0649c8e49d6f);
+            
+    
+            var marker_96b64c81a2fa45cc5b35592654c54244 = L.marker(
+                [42.7813, 17.387],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_8de7199555242d1acb0e631aee61bc3f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c7e05db741b08da8208e174b0c542d61 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_cda22f44663e3b036046604401202c3e = $(`<div id="html_cda22f44663e3b036046604401202c3e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Polače, Mljet</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 2 · June 17</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~25 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_c7e05db741b08da8208e174b0c542d61.setContent(html_cda22f44663e3b036046604401202c3e);
+            
+        
+
+        marker_96b64c81a2fa45cc5b35592654c54244.bindPopup(popup_c7e05db741b08da8208e174b0c542d61)
+        ;
+
+        
+    
+    
+            marker_96b64c81a2fa45cc5b35592654c54244.bindTooltip(
+                `<div>
+                     Polače, Mljet — Day 2 · June 17
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_96b64c81a2fa45cc5b35592654c54244.setIcon(icon_8de7199555242d1acb0e631aee61bc3f);
+            
+    
+            var marker_6240bd89a9e3a18cdd419c72862c95e0 = L.marker(
+                [42.6507, 18.0944],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_4843afb5d49f673e9cec23104222f0df = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9b4fb4dd9da22e53551f85ecf1bc9d0 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_4d7d8389e40188a3b7917f29b182c057 = $(`<div id="html_4d7d8389e40188a3b7917f29b182c057" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Dubrovnik</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 3 · June 18</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏛️ Harbour night</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~35 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_b9b4fb4dd9da22e53551f85ecf1bc9d0.setContent(html_4d7d8389e40188a3b7917f29b182c057);
+            
+        
+
+        marker_6240bd89a9e3a18cdd419c72862c95e0.bindPopup(popup_b9b4fb4dd9da22e53551f85ecf1bc9d0)
+        ;
+
+        
+    
+    
+            marker_6240bd89a9e3a18cdd419c72862c95e0.bindTooltip(
+                `<div>
+                     Dubrovnik — Day 3 · June 18
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6240bd89a9e3a18cdd419c72862c95e0.setIcon(icon_4843afb5d49f673e9cec23104222f0df);
+            
+    
+            var marker_eba16619a409d8cd64ca6a374d303dfd = L.marker(
+                [42.5785, 18.2196],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_7547a42e76148e4c3dc2d6fedf8c30a1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_747d2a0bd69bda3d4ae7415d6e5853a6 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_96fb0bc3c0096ffcbd95f8bfbee7986f = $(`<div id="html_96fb0bc3c0096ffcbd95f8bfbee7986f" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Cavtat</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 4 · June 19</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~12 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_747d2a0bd69bda3d4ae7415d6e5853a6.setContent(html_96fb0bc3c0096ffcbd95f8bfbee7986f);
+            
+        
+
+        marker_eba16619a409d8cd64ca6a374d303dfd.bindPopup(popup_747d2a0bd69bda3d4ae7415d6e5853a6)
+        ;
+
+        
+    
+    
+            marker_eba16619a409d8cd64ca6a374d303dfd.bindTooltip(
+                `<div>
+                     Cavtat — Day 4 · June 19
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eba16619a409d8cd64ca6a374d303dfd.setIcon(icon_7547a42e76148e4c3dc2d6fedf8c30a1);
+            
+    
+            var marker_8d8c197bbbb590f3f13e5eec20928cf3 = L.marker(
+                [39.6243, 19.9217],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_bf423667cab15409ad325fe0ed3c4801 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_94fba2115ab22d6511a9c7fff3734ef8 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_ee9f701efaec71312f09e6a5bc23985f = $(`<div id="html_ee9f701efaec71312f09e6a5bc23985f" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Corfu Town</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 5 · June 20</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏛️ Harbour night</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~155 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_94fba2115ab22d6511a9c7fff3734ef8.setContent(html_ee9f701efaec71312f09e6a5bc23985f);
+            
+        
+
+        marker_8d8c197bbbb590f3f13e5eec20928cf3.bindPopup(popup_94fba2115ab22d6511a9c7fff3734ef8)
+        ;
+
+        
+    
+    
+            marker_8d8c197bbbb590f3f13e5eec20928cf3.bindTooltip(
+                `<div>
+                     Corfu Town — Day 5 · June 20
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8d8c197bbbb590f3f13e5eec20928cf3.setIcon(icon_bf423667cab15409ad325fe0ed3c4801);
+            
+    
+            var marker_1d332812c5a11f91342faf076d9b4c0c = L.marker(
+                [39.2244, 20.1388],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_bbf9f706620b47b3dddb937ec6ef26cc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4f8fe4d5906970d7ae8c3356a49a11f3 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_39a320f131766d467a8480cd8b858b09 = $(`<div id="html_39a320f131766d467a8480cd8b858b09" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Paxos (Lakka Bay)</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 6 · June 21</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~28 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_4f8fe4d5906970d7ae8c3356a49a11f3.setContent(html_39a320f131766d467a8480cd8b858b09);
+            
+        
+
+        marker_1d332812c5a11f91342faf076d9b4c0c.bindPopup(popup_4f8fe4d5906970d7ae8c3356a49a11f3)
+        ;
+
+        
+    
+    
+            marker_1d332812c5a11f91342faf076d9b4c0c.bindTooltip(
+                `<div>
+                     Paxos (Lakka Bay) — Day 6 · June 21
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1d332812c5a11f91342faf076d9b4c0c.setIcon(icon_bbf9f706620b47b3dddb937ec6ef26cc);
+            
+    
+            var marker_a53dbd6b654487ba58fae947103584b4 = L.marker(
+                [38.72, 20.71],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_b98397fb38a22e655f975ca1afcaca4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5dd4a43fcecf7fa1020063b89fc9bdc2 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_77cf9aa670f19acae2eabda23aeff3ce = $(`<div id="html_77cf9aa670f19acae2eabda23aeff3ce" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Dessimi Bay, Lefkada</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 7 · June 22</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~45 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_5dd4a43fcecf7fa1020063b89fc9bdc2.setContent(html_77cf9aa670f19acae2eabda23aeff3ce);
+            
+        
+
+        marker_a53dbd6b654487ba58fae947103584b4.bindPopup(popup_5dd4a43fcecf7fa1020063b89fc9bdc2)
+        ;
+
+        
+    
+    
+            marker_a53dbd6b654487ba58fae947103584b4.bindTooltip(
+                `<div>
+                     Dessimi Bay, Lefkada — Day 7 · June 22
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a53dbd6b654487ba58fae947103584b4.setIcon(icon_b98397fb38a22e655f975ca1afcaca4a);
+            
+    
+            var marker_93e38241d310ab8dd6b7f9b4be4697ad = L.marker(
+                [38.958, 20.7507],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_ec8628c77aff23555a4cb848bb551d0f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fd67aff7fea5344f9d198370e5a50056 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_c2a6c9880ebbeb2bf1f779209d0ada81 = $(`<div id="html_c2a6c9880ebbeb2bf1f779209d0ada81" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Preveza / Guest Pickup</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 8 · June 23 🎉</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">👥 Guest pickup/dropoff</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~15 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_fd67aff7fea5344f9d198370e5a50056.setContent(html_c2a6c9880ebbeb2bf1f779209d0ada81);
+            
+        
+
+        marker_93e38241d310ab8dd6b7f9b4be4697ad.bindPopup(popup_fd67aff7fea5344f9d198370e5a50056)
+        ;
+
+        
+    
+    
+            marker_93e38241d310ab8dd6b7f9b4be4697ad.bindTooltip(
+                `<div>
+                     Preveza / Guest Pickup — Day 8 · June 23 🎉
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_93e38241d310ab8dd6b7f9b4be4697ad.setIcon(icon_ec8628c77aff23555a4cb848bb551d0f);
+            
+    
+            var marker_3f9934f83c37609e31598960b7d3c042 = L.marker(
+                [38.6393, 20.7817],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_2de689e887b5962001328da11389e40e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_25bc089564c4aa1c9f9287c3553265da = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_6963b9b475e10d2f5d13d739ac2feca6 = $(`<div id="html_6963b9b475e10d2f5d13d739ac2feca6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Vathy, Meganisi</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 8 · June 23</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~10 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_25bc089564c4aa1c9f9287c3553265da.setContent(html_6963b9b475e10d2f5d13d739ac2feca6);
+            
+        
+
+        marker_3f9934f83c37609e31598960b7d3c042.bindPopup(popup_25bc089564c4aa1c9f9287c3553265da)
+        ;
+
+        
+    
+    
+            marker_3f9934f83c37609e31598960b7d3c042.bindTooltip(
+                `<div>
+                     Vathy, Meganisi — Day 8 · June 23
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3f9934f83c37609e31598960b7d3c042.setIcon(icon_2de689e887b5962001328da11389e40e);
+            
+    
+            var marker_6d3f07af733a8ef7b7b9c8f1ef8bda2d = L.marker(
+                [38.4536, 20.5788],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_46f50a5c68ff05354288dbfddd04956c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2340acb9ee35f5b19bbad92a8b175769 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_d0bc4020252c2363b7e04d93ced1d383 = $(`<div id="html_d0bc4020252c2363b7e04d93ced1d383" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Fiskardo, Kefalonia</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 9 · June 24</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏛️ Harbour night</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~20 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_2340acb9ee35f5b19bbad92a8b175769.setContent(html_d0bc4020252c2363b7e04d93ced1d383);
+            
+        
+
+        marker_6d3f07af733a8ef7b7b9c8f1ef8bda2d.bindPopup(popup_2340acb9ee35f5b19bbad92a8b175769)
+        ;
+
+        
+    
+    
+            marker_6d3f07af733a8ef7b7b9c8f1ef8bda2d.bindTooltip(
+                `<div>
+                     Fiskardo, Kefalonia — Day 9 · June 24
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6d3f07af733a8ef7b7b9c8f1ef8bda2d.setIcon(icon_46f50a5c68ff05354288dbfddd04956c);
+            
+    
+            var marker_9ee47a30ebe353d78b7cc0d0e8d99edb = L.marker(
+                [38.4285, 20.6688],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_b656e4c0d4bad5e6850607b55dafffa8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f7684bc5de9d0c83695614dad0c2a4ee = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_2d1de896c3319894fbab373ec09ac00c = $(`<div id="html_2d1de896c3319894fbab373ec09ac00c" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Frikes, Ithaka</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 10 · June 25</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~20 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_f7684bc5de9d0c83695614dad0c2a4ee.setContent(html_2d1de896c3319894fbab373ec09ac00c);
+            
+        
+
+        marker_9ee47a30ebe353d78b7cc0d0e8d99edb.bindPopup(popup_f7684bc5de9d0c83695614dad0c2a4ee)
+        ;
+
+        
+    
+    
+            marker_9ee47a30ebe353d78b7cc0d0e8d99edb.bindTooltip(
+                `<div>
+                     Frikes, Ithaka — Day 10 · June 25
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9ee47a30ebe353d78b7cc0d0e8d99edb.setIcon(icon_b656e4c0d4bad5e6850607b55dafffa8);
+            
+    
+            var marker_4baaf0aee9bc5a6437c5b94ec604e8ab = L.marker(
+                [38.3703, 20.7166],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_c6c50b1aa4400d535cf092509572d1fe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_93357f1d2b5ba65d8b2d03ef6707b6e9 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_cdcb795e63fccc4e0de15c9961c2fae2 = $(`<div id="html_cdcb795e63fccc4e0de15c9961c2fae2" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Vathi, Ithaka</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 11 · June 26</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏛️ Harbour night</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~15 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_93357f1d2b5ba65d8b2d03ef6707b6e9.setContent(html_cdcb795e63fccc4e0de15c9961c2fae2);
+            
+        
+
+        marker_4baaf0aee9bc5a6437c5b94ec604e8ab.bindPopup(popup_93357f1d2b5ba65d8b2d03ef6707b6e9)
+        ;
+
+        
+    
+    
+            marker_4baaf0aee9bc5a6437c5b94ec604e8ab.bindTooltip(
+                `<div>
+                     Vathi, Ithaka — Day 11 · June 26
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4baaf0aee9bc5a6437c5b94ec604e8ab.setIcon(icon_c6c50b1aa4400d535cf092509572d1fe);
+            
+    
+            var marker_dd7681718213ae5a36cfd6285753e1aa = L.marker(
+                [38.54, 20.844],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_127cdfcb70df1a6481377bc8e83fc7b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1b468a2670fd49fe371576da8ce2a318 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_cd8b8388881773cf8bbbfe1a3ac20faa = $(`<div id="html_cd8b8388881773cf8bbbfe1a3ac20faa" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Atokos Island</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 12 · June 27</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~25 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_1b468a2670fd49fe371576da8ce2a318.setContent(html_cd8b8388881773cf8bbbfe1a3ac20faa);
+            
+        
+
+        marker_dd7681718213ae5a36cfd6285753e1aa.bindPopup(popup_1b468a2670fd49fe371576da8ce2a318)
+        ;
+
+        
+    
+    
+            marker_dd7681718213ae5a36cfd6285753e1aa.bindTooltip(
+                `<div>
+                     Atokos Island — Day 12 · June 27
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dd7681718213ae5a36cfd6285753e1aa.setIcon(icon_127cdfcb70df1a6481377bc8e83fc7b6);
+            
+    
+            var marker_3d40108d60b20d3933bcffe3d1d986e6 = L.marker(
+                [38.66, 20.8],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_97b0e9aefa3c07d3b4507f3e9c25c186 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b80b0efddbabadb803fdef655235ed77 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_d631538aaa3cee63046399a46ca60ee7 = $(`<div id="html_d631538aaa3cee63046399a46ca60ee7" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Atherinos Bay, Meganisi</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 12 · June 27</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~5 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_b80b0efddbabadb803fdef655235ed77.setContent(html_d631538aaa3cee63046399a46ca60ee7);
+            
+        
+
+        marker_3d40108d60b20d3933bcffe3d1d986e6.bindPopup(popup_b80b0efddbabadb803fdef655235ed77)
+        ;
+
+        
+    
+    
+            marker_3d40108d60b20d3933bcffe3d1d986e6.bindTooltip(
+                `<div>
+                     Atherinos Bay, Meganisi — Day 12 · June 27
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3d40108d60b20d3933bcffe3d1d986e6.setIcon(icon_97b0e9aefa3c07d3b4507f3e9c25c186);
+            
+    
+            var marker_9237d3048cc1000db53ee806dbd972bf = L.marker(
+                [38.52, 20.54],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_75753834bf206cfd10119d4c3f4f27f3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d147255e65ee2566294d10e79438114 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_64acaa9b2e5784da85147725801f9e09 = $(`<div id="html_64acaa9b2e5784da85147725801f9e09" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Porto Katsiki, Lefkada</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 13 · June 28</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~20 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_9d147255e65ee2566294d10e79438114.setContent(html_64acaa9b2e5784da85147725801f9e09);
+            
+        
+
+        marker_9237d3048cc1000db53ee806dbd972bf.bindPopup(popup_9d147255e65ee2566294d10e79438114)
+        ;
+
+        
+    
+    
+            marker_9237d3048cc1000db53ee806dbd972bf.bindTooltip(
+                `<div>
+                     Porto Katsiki, Lefkada — Day 13 · June 28
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9237d3048cc1000db53ee806dbd972bf.setIcon(icon_75753834bf206cfd10119d4c3f4f27f3);
+            
+    
+            var marker_d43edc828b663327ee29b9fa89156d55 = L.marker(
+                [38.633, 20.5932],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_e6c60f9dcd7eb414f3dccf9e2379bd55 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3969892c7d2c752b71687508f5d11f4f = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_1b5ce3ee6b7d4f9fa65bceadfcaf6e35 = $(`<div id="html_1b5ce3ee6b7d4f9fa65bceadfcaf6e35" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Vasiliki Bay, Lefkada</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 13 · June 28</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~5 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_3969892c7d2c752b71687508f5d11f4f.setContent(html_1b5ce3ee6b7d4f9fa65bceadfcaf6e35);
+            
+        
+
+        marker_d43edc828b663327ee29b9fa89156d55.bindPopup(popup_3969892c7d2c752b71687508f5d11f4f)
+        ;
+
+        
+    
+    
+            marker_d43edc828b663327ee29b9fa89156d55.bindTooltip(
+                `<div>
+                     Vasiliki Bay, Lefkada — Day 13 · June 28
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d43edc828b663327ee29b9fa89156d55.setIcon(icon_e6c60f9dcd7eb414f3dccf9e2379bd55);
+            
+    
+            var marker_efdb44747a17eb2f51156504346d0987 = L.marker(
+                [38.958, 20.7507],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_23ba74614a4c16d813246a0bc26d0a1c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "user",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6cdbcf5d95d22936c1f92e45c2ec2f2f = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_9bac1bada396423015b29f1c35602618 = $(`<div id="html_9bac1bada396423015b29f1c35602618" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Preveza / Farewell</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 15 · June 30 👋</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">👥 Guest pickup/dropoff</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~25 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_6cdbcf5d95d22936c1f92e45c2ec2f2f.setContent(html_9bac1bada396423015b29f1c35602618);
+            
+        
+
+        marker_efdb44747a17eb2f51156504346d0987.bindPopup(popup_6cdbcf5d95d22936c1f92e45c2ec2f2f)
+        ;
+
+        
+    
+    
+            marker_efdb44747a17eb2f51156504346d0987.bindTooltip(
+                `<div>
+                     Preveza / Farewell — Day 15 · June 30 👋
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_efdb44747a17eb2f51156504346d0987.setIcon(icon_23ba74614a4c16d813246a0bc26d0a1c);
+            
+    
+            var marker_d306789ede9cf5d89395b990b3b9ee00 = L.marker(
+                [39.18, 20.17],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_661845faa2b555fe83e5906965471b5b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1e27ae5f342e6fdefe5f7c45a6eafa3d = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_2cba5daf7933f814320b6176b383af47 = $(`<div id="html_2cba5daf7933f814320b6176b383af47" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Paxos (Mongonisi)</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 16 · July 1</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~45 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_1e27ae5f342e6fdefe5f7c45a6eafa3d.setContent(html_2cba5daf7933f814320b6176b383af47);
+            
+        
+
+        marker_d306789ede9cf5d89395b990b3b9ee00.bindPopup(popup_1e27ae5f342e6fdefe5f7c45a6eafa3d)
+        ;
+
+        
+    
+    
+            marker_d306789ede9cf5d89395b990b3b9ee00.bindTooltip(
+                `<div>
+                     Paxos (Mongonisi) — Day 16 · July 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d306789ede9cf5d89395b990b3b9ee00.setIcon(icon_661845faa2b555fe83e5906965471b5b);
+            
+    
+            var marker_011be40b3bd9027dec0b96acc040d432 = L.marker(
+                [39.66, 19.86],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_8b1cf0ecb64cb8d0bcfbc9b6f4202c8f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "anchor",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_33e1afe8dcc37a422e81708b5f03052e = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_622d294297e1349d3b89dbec065e91d6 = $(`<div id="html_622d294297e1349d3b89dbec065e91d6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Corfu (Gouvia)</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 17 · July 2</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏛️ Harbour night</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~28 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_33e1afe8dcc37a422e81708b5f03052e.setContent(html_622d294297e1349d3b89dbec065e91d6);
+            
+        
+
+        marker_011be40b3bd9027dec0b96acc040d432.bindPopup(popup_33e1afe8dcc37a422e81708b5f03052e)
+        ;
+
+        
+    
+    
+            marker_011be40b3bd9027dec0b96acc040d432.bindTooltip(
+                `<div>
+                     Corfu (Gouvia) — Day 17 · July 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_011be40b3bd9027dec0b96acc040d432.setIcon(icon_8b1cf0ecb64cb8d0bcfbc9b6f4202c8f);
+            
+    
+            var marker_17e0ab0efe4aa15475a33fd72708ee02 = L.marker(
+                [42.6836, 17.9319],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_dd8fb5186828475bf893d91da5aa16ef = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0ad819de17aee96c595eb0605ffeb077 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_4b4f19be892adc68e18d59ccc7f73477 = $(`<div id="html_4b4f19be892adc68e18d59ccc7f73477" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Lopud Island</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 18 · July 3</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~155 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_0ad819de17aee96c595eb0605ffeb077.setContent(html_4b4f19be892adc68e18d59ccc7f73477);
+            
+        
+
+        marker_17e0ab0efe4aa15475a33fd72708ee02.bindPopup(popup_0ad819de17aee96c595eb0605ffeb077)
+        ;
+
+        
+    
+    
+            marker_17e0ab0efe4aa15475a33fd72708ee02.bindTooltip(
+                `<div>
+                     Lopud Island — Day 18 · July 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_17e0ab0efe4aa15475a33fd72708ee02.setIcon(icon_dd8fb5186828475bf893d91da5aa16ef);
+            
+    
+            var marker_6a75717e4f3867f8c1c6e79c5fb8fb21 = L.marker(
+                [42.774, 17.42],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_5774f111b0af8532be1fc3fe03abd470 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e7b97ef95c8d72ec9b34bef5d1bebdf5 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_f37202d0c74b49fb6aec14078386503f = $(`<div id="html_f37202d0c74b49fb6aec14078386503f" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Okuklje Bay, Mljet</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 19 · July 4</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~28 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_e7b97ef95c8d72ec9b34bef5d1bebdf5.setContent(html_f37202d0c74b49fb6aec14078386503f);
+            
+        
+
+        marker_6a75717e4f3867f8c1c6e79c5fb8fb21.bindPopup(popup_e7b97ef95c8d72ec9b34bef5d1bebdf5)
+        ;
+
+        
+    
+    
+            marker_6a75717e4f3867f8c1c6e79c5fb8fb21.bindTooltip(
+                `<div>
+                     Okuklje Bay, Mljet — Day 19 · July 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a75717e4f3867f8c1c6e79c5fb8fb21.setIcon(icon_5774f111b0af8532be1fc3fe03abd470);
+            
+    
+            var marker_b27da1b41c7b84c65ae2be418e58c763 = L.marker(
+                [42.97, 16.88],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_7276f9d5859bc9b4c71cdeb6542e768b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e6193c9ed4bb250362a30411d45e2ecf = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_410478b1330ec06dd50d4a095d36e960 = $(`<div id="html_410478b1330ec06dd50d4a095d36e960" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Prižba, Korčula Isl.</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 20 · July 5</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">⚓ At anchor</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~25 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_e6193c9ed4bb250362a30411d45e2ecf.setContent(html_410478b1330ec06dd50d4a095d36e960);
+            
+        
+
+        marker_b27da1b41c7b84c65ae2be418e58c763.bindPopup(popup_e6193c9ed4bb250362a30411d45e2ecf)
+        ;
+
+        
+    
+    
+            marker_b27da1b41c7b84c65ae2be418e58c763.bindTooltip(
+                `<div>
+                     Prižba, Korčula Isl. — Day 20 · July 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b27da1b41c7b84c65ae2be418e58c763.setIcon(icon_7276f9d5859bc9b4c71cdeb6542e768b);
+            
+    
+            var marker_fe906217170614405a4954bb8a67e4b0 = L.marker(
+                [43.3874, 16.7057],
+                {
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+        
+    
+            var icon_bf97ff426701574c68a8f239198b928f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e109db8f6b8d6d17aed51dd005a07be0 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_aed1fd9b7eb56d277204402cac2fbae6 = $(`<div id="html_aed1fd9b7eb56d277204402cac2fbae6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:sans-serif;min-width:180px;max-width:220px">       <div style="font-weight:700;font-size:13px;color:#1a6b8a;margin-bottom:4px">Vrboska, Hvar 🏠</div>       <div style="font-size:11px;color:#555;margin-bottom:6px">Day 21 · July 6 🎉</div>       <div style="font-size:11px;background:#f0f4f8;padding:3px 6px;border-radius:4px;display:inline-block">🏠 Home port</div>       <div style='font-size:11px;color:#888;margin-top:4px'>~30 nm from previous stop</div>     </div>     </div>`)[0];
+                popup_e109db8f6b8d6d17aed51dd005a07be0.setContent(html_aed1fd9b7eb56d277204402cac2fbae6);
+            
+        
+
+        marker_fe906217170614405a4954bb8a67e4b0.bindPopup(popup_e109db8f6b8d6d17aed51dd005a07be0)
+        ;
+
+        
+    
+    
+            marker_fe906217170614405a4954bb8a67e4b0.bindTooltip(
+                `<div>
+                     Vrboska, Hvar 🏠 — Day 21 · July 6 🎉
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fe906217170614405a4954bb8a67e4b0.setIcon(icon_bf97ff426701574c68a8f239198b928f);
+            
+    
+            var layer_control_eb4addb65d0cdee3b3ffd2690a91319f_layers = {
+                base_layers : {
+                    "OpenStreetMap" : tile_layer_39c2d528e3abd58e60849be15dffd0d7,
+                    "Esri Ocean (satellite-style)" : tile_layer_4a5a094d45aeb9628fc82c52d53c3dc8,
+                    "CartoDB Voyager (clean)" : tile_layer_e8af898f4515fb4f10ebf5840af6f1b6,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_eb4addb65d0cdee3b3ffd2690a91319f = L.control.layers(
+                layer_control_eb4addb65d0cdee3b3ffd2690a91319f_layers.base_layers,
+                layer_control_eb4addb65d0cdee3b3ffd2690a91319f_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_61e33967818b5f6d6830d05e94b97dea);
+
+        
+</script>
+</html>

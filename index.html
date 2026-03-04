@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Vibrations — Ionian Islands 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0d1a2e;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .hero {
+    text-align: center;
+    max-width: 680px;
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a31e;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #c8d8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 3vw, 20px);
+    color: #8ba3c8;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .dates {
+    font-size: 13px;
+    color: #c9a31e;
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: #c9a31e;
+    margin: 24px auto 40px;
+    border-radius: 2px;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 52px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: #c9a31e;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8ba3c8;
+  }
+
+  .cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    width: 280px;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .card.itinerary::before { background: #0d5c8a; }
+  .card.map::before        { background: #2a6b3a; }
+  .card.pdf::before        { background: #c9a31e; }
+
+  .card:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: #8ba3c8;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .card-cta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .card.itinerary .card-cta { color: #5aade8; }
+  .card.map .card-cta       { color: #4db86a; }
+  .card.pdf .card-cta       { color: #c9a31e; }
+
+  .footer {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .card { width: 100%; max-width: 360px; }
+    .stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Sailing Voyage · Summer 2026</div>
+  <h1>Good Vibrations</h1>
+  <div class="subtitle">Vrboska to the Ionian Islands &amp; Back</div>
+  <div class="dates">16 June – 6 July 2026</div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">21</div><div class="stat-label">Days</div></div>
+    <div class="stat"><div class="stat-num">801</div><div class="stat-label">Nautical miles</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Overnights</div></div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Nights at anchor</div></div>
+  </div>
+
+  <div class="cards">
+    <a class="card itinerary" href="itinerary.html">
+      <span class="card-icon">📋</span>
+      <div class="card-title">Full Itinerary</div>
+      <div class="card-desc">Day-by-day route with anchorages, highlights, distances, and nav notes for every leg.</div>
+      <div class="card-cta">Open itinerary →</div>
+    </a>
+
+    <a class="card map" href="map.html">
+      <span class="card-icon">🗺️</span>
+      <div class="card-title">Interactive Map</div>
+      <div class="card-desc">Full sailing route plotted on a live map — click any waypoint to see the day's details.</div>
+      <div class="card-cta">Open map →</div>
+    </a>
+
+    <a class="card pdf" href="itinerary.pdf" download>
+      <span class="card-icon">⬇️</span>
+      <div class="card-title">Download PDF</div>
+      <div class="card-desc">26-page formatted itinerary — save for offline use or print before you leave.</div>
+      <div class="card-cta">Download PDF →</div>
+    </a>
+  </div>
+
+  <div class="footer">Gunnar &amp; Dóra Thoroddsen · 55ft Beneteau Oceanis · ACI Marina Vrboska, Hvar</div>
+</div>
+
+</body>
+</html>
