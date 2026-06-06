@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Good Vibrations — Jónísku eyjarnar 2026 · Kort</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  body { margin:0; font-family: -apple-system, 'Segoe UI', sans-serif; }
+  #map { position:absolute; inset:0; }
+  .legend {
+    position:absolute; bottom:18px; left:12px; z-index:1000;
+    background:rgba(255,255,255,.93); padding:12px 16px; border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.25); font-size:13px; line-height:1.7; max-width:310px;
+  }
+  .legend h3 { margin:0 0 6px; font-size:15px; }
+  .lg-line { display:inline-block; width:26px; height:4px; border-radius:2px; vertical-align:middle; margin-right:7px; }
+  .lg-dot  { display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:middle; margin-right:9px; border:2px solid #fff; box-shadow:0 0 2px rgba(0,0,0,.5);}
+  .disclaimer { font-size:11px; color:#777; margin-top:8px; }
+  .leaflet-popup-content { font-size:13px; line-height:1.5; }
+  .day-badge { display:inline-block; background:#0d5c8a; color:#fff; border-radius:4px; padding:1px 7px; font-size:11px; font-weight:600; margin-bottom:3px;}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="legend">
+  <h3>⛵ Good Vibrations — Leiðin 2026</h3>
+  <div><span class="lg-line" style="background:#0d5c8a"></span>Áfangi 1 · Suður á bóginn: 18.–23. júní (~350 sjm)</div>
+  <div><span class="lg-line" style="background:#c9a227"></span>Áfangi 2 · Fjölskylduvikan: 24. júní – 1. júlí (~110 sjm)</div>
+  <div><span class="lg-line" style="background:#2a6b3a"></span>Áfangi 3 · Heimleiðin: 1.–8. júlí (~360 sjm)</div>
+  <div><span class="lg-line" style="background:#888; height:0; border-top:3px dashed #555;"></span>Úthafsleggur — siglt yfir nótt</div>
+  <div style="margin-top:6px">
+    <span class="lg-dot" style="background:#e8542f"></span>Höfn yfir nótt
+    <br><span class="lg-dot" style="background:#19a2a8"></span>Við akkeri yfir nótt
+    <br><span class="lg-dot" style="background:#7bc8f6"></span>Sund- eða dagstopp
+    <br><span class="lg-dot" style="background:#5b2a86"></span>Heimahöfn
+  </div>
+  <div class="disclaimer">Áætluð leið miðað við 5,5 hnúta — EKKI til siglinga. Sjómerki © OpenSeaMap.</div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([40.85, 18.9], 7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, attribution:'© OpenStreetMap'}).addTo(map);
+L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {maxZoom:18, attribution:'© OpenSeaMap'}).addTo(map);
+
+const P1 = '#0d5c8a', P2 = '#c9a227', P3 = '#2a6b3a';
+function route(pts, color, dash){ L.polyline(pts, {color:color, weight:4, opacity:.88, dashArray: dash||null}).addTo(map); }
+
+// ── PHASE 1 ──
+// Jun 18: Vrboska → E along Hvar → round Sućuraj → SW to Lovište (Pelješac tip) → Korčula town (~40 nm)
+route([
+ [43.181,16.673],[43.205,16.690],[43.200,16.800],[43.190,16.950],[43.170,17.100],
+ [43.140,17.200],[43.122,17.235],[43.100,17.215],                       // round Sućuraj
+ [43.060,17.120],[43.030,17.020],[43.000,17.010],                       // Lovište / Pelješac NW tip
+ [42.975,17.090],[42.963,17.135]                                        // Korčula town
+], P1);
+// Jun 19–21: DIRECT passage Korčula → Corfu (~240 nm, 2 nights, >12 nm off Albania)
+route([
+ [42.963,17.135],[42.945,17.210],[42.910,17.300],[42.870,17.370],       // Mljet channel
+ [42.830,17.450],[42.790,17.560],[42.750,17.680],[42.715,17.790],       // along Mljet N coast
+ [42.690,17.880],                                                       // exit past Mljet E end
+ [42.350,18.300],[41.700,18.700],[41.000,18.850],                       // offshore, >12nm off MNE
+ [40.330,19.000],                                                       // KEY DOGLEG: W of Karaburun, >12nm off ALB
+ [39.980,19.500],[39.830,19.870],[39.760,19.965],                       // N Corfu Channel, Greek side
+ [39.680,19.920],[39.652,19.851]                                        // Gouvia
+], P1, '10 8');
+// Jun 22–23: Gouvia → Lakka → Antipaxos → Preveza
+route([
+ [39.652,19.851],[39.620,19.905],[39.560,19.950],[39.450,20.030],[39.300,20.120],
+ [39.240,20.133],                                                       // Lakka
+ [39.215,20.190],[39.152,20.235],                                       // Voutoumi
+ [39.100,20.330],[39.020,20.550],[38.965,20.715],[38.950,20.735],[38.958,20.752] // Preveza
+], P1);
+
+// ── PHASE 2 ── family loop
+route([
+ [38.958,20.752],[38.945,20.735],[38.910,20.720],[38.870,20.712],
+ [38.836,20.713],[38.820,20.718],[38.800,20.727],[38.780,20.735],       // canal
+ [38.745,20.722],[38.710,20.712],                                       // Nidri / Tranquil
+ [38.690,20.722],[38.668,20.752],[38.665,20.776],                       // Vathy Meganisi
+ [38.673,20.790],[38.655,20.825],[38.632,20.890],[38.625,20.925],       // Port Kalamos
+ [38.590,20.900],[38.530,20.860],[38.475,20.815],                       // Atokos
+ [38.458,20.780],[38.448,20.740],[38.447,20.712],                       // Kioni
+ [38.480,20.700],[38.510,20.660],[38.490,20.610],[38.458,20.576],       // Fiskardo
+ [38.475,20.555],[38.545,20.530],[38.599,20.552],                       // Porto Katsiki
+ [38.570,20.530],[38.552,20.552],[38.580,20.600],[38.628,20.610],       // round C. Doukato → Vasiliki
+ [38.621,20.620],[38.600,20.650],[38.608,20.685],[38.617,20.692],       // Agiofili → Sivota
+ [38.633,20.718],[38.660,20.722],[38.677,20.715],                       // Dessimi
+ [38.710,20.712],[38.745,20.722],[38.780,20.735],[38.800,20.727],
+ [38.836,20.713],[38.870,20.712],[38.910,20.720],[38.958,20.752]        // canal → Preveza
+], P2);
+
+// ── PHASE 3 ──
+// Jul 1–3: Preveza → Parga → Antipaxos → Mongonisi → Gouvia
+route([
+ [38.958,20.752],[38.950,20.735],[38.970,20.690],[39.050,20.500],[39.180,20.430],
+ [39.288,20.395],                                                       // Parga
+ [39.250,20.330],[39.180,20.260],[39.152,20.235],                       // Voutoumi again
+ [39.165,20.205],[39.187,20.195],                                       // Mongonisi
+ [39.230,20.165],[39.300,20.120],[39.450,20.030],[39.560,19.950],[39.620,19.905],[39.652,19.851]
+], P3);
+// Jul 4–5: overnight passage Corfu → Cavtat (>12 nm off Albania via Karaburun dogleg)
+route([
+ [39.652,19.851],[39.680,19.920],[39.760,19.965],[39.830,19.870],[39.980,19.500],
+ [40.330,19.000],[41.000,18.850],[41.700,18.700],[42.300,18.450],[42.581,18.218]
+], P3, '10 8');
+// Jul 6–8: Cavtat → Lopud → (Okuklje) → Korčula → Vrboska
+route([
+ [42.581,18.218],[42.598,18.170],[42.620,18.110],[42.645,18.065],[42.665,18.020],
+ [42.683,17.952],                                                       // Šunj, Lopud
+ [42.695,17.900],[42.715,17.810],[42.730,17.720],[42.724,17.664],       // Okuklje lunch
+ [42.740,17.600],[42.760,17.520],[42.785,17.430],[42.815,17.370],
+ [42.860,17.330],[42.920,17.270],[42.950,17.180],[42.962,17.137],       // Korčula town
+ [42.975,17.090],[43.000,17.010],[43.030,17.020],[43.060,17.120],
+ [43.100,17.215],[43.122,17.235],[43.140,17.200],[43.170,17.100],
+ [43.190,16.950],[43.200,16.800],[43.205,16.690],[43.181,16.673]        // Vrboska
+], P3);
+
+// ── MARKERS ──
+const HARBOUR='#e8542f', ANCHOR='#19a2a8', SWIM='#7bc8f6', HOME='#5b2a86';
+function stop(lat,lng,color,day,title,html,r=8){
+  L.circleMarker([lat,lng],{radius:r,fillColor:color,fillOpacity:.95,color:'#fff',weight:2})
+   .addTo(map).bindPopup('<span class="day-badge">'+day+'</span><br><b>'+title+'</b><br>'+html);
+}
+stop(43.181,16.673,HOME,'16.–18. júní & 8. júlí','Vrboska, Hvar — HEIMAHÖFN','Undirbúningur 16.–17. júní · lagt af stað 18. júní. Heimkoma ~8. júlí.',10);
+stop(42.963,17.137,HARBOUR,'18.–19. júní & 7. júlí','Korčula','Út: 40 sjm, gist í höfn, tankað og lagt í úthafslegginn kl. 11. Heim: gamli bærinn 7. júlí.');
+stop(40.330,19.000,SWIM,'Úthafsleggur','Beygjupunktur við Karaburun','Haldið >12 sjm frá Albaníu — bein lína færi inn í albanska lögsögu!',6);
+stop(42.581,18.218,ANCHOR,'5. júlí','Cavtat','Komustaður eftir úthafslegg heim. Akkeri, hvíldarnótt.');
+stop(39.652,19.851,HARBOUR,'21.–22. júní & 3. júlí','Gouvia Marina, Korfú','Komið ~kl. 7 að morgni eftir 240 sjm / 43 klst. Innritun í Grikkland. Gamli bærinn um kvöldið.');
+stop(39.240,20.133,ANCHOR,'22. júní','Lakka, Paxos','30 sjm. Akkeri í skeifulaga flóa, taverna í þorpinu.');
+stop(39.152,20.235,SWIM,'23. júní & 2. júlí','Voutoumi, Antipaxos','Morgunsund á einni fallegustu strönd Grikklands.',6);
+stop(38.958,20.752,HARBOUR,'23.–24. júní & 30. júní–1. júlí','Preveza','Bryggja í bænum. Taxi á flugvöllinn 10 mín. Sótt 24.6 kl. 07:20 · skilað 1.7 fyrir flug kl. 11:00.',10);
+stop(38.836,20.713,SWIM,'24. & 30. júní','Lefkada-skurðurinn','Flotbrúin opnar kl. 8/10/14/17/19/21/22. Út: kl. 10 · heim: kl. 17.',6);
+stop(38.710,20.712,SWIM,'24. júní','Tranquil Bay, Nidri','Fyrsta sundstopp fjölskyldunnar.',6);
+stop(38.665,20.776,HARBOUR,'24. júní','Vathy, Meganisi','22 sjm. Bryggja, velkomstkvöldverður.');
+stop(38.625,20.925,HARBOUR,'25. júní','Port Kalamos','11 sjm. Taverna George — goðsögn meðal siglara.');
+stop(38.475,20.815,SWIM,'26. júní','One House Bay, Atokos','HÁPUNKTURINN — óbyggð eyja, snorkl, hádegisstopp.',7);
+stop(38.447,20.712,ANCHOR,'26. júní','Kioni, Ithaka','17 sjm. Akkeri. Fallegasta þorp Ithaku.');
+stop(38.458,20.576,HARBOUR,'27. júní','Fiskardo, Kefalonia','13 sjm. Bryggja fyrir kl. 13:30! Fínasti kvöldverðurinn — Tassia.');
+stop(38.599,20.552,SWIM,'28. júní','Porto Katsiki','Frægasta strönd Grikklands — hádegisakkeri ef veður leyfir.',7);
+stop(38.628,20.610,ANCHOR,'28. júní','Vasiliki','16 sjm. Akkeri, brimbrettafólkið og sólarlagið.');
+stop(38.621,20.620,SWIM,'29. júní','Agiofili','Gúmmíbátsferð í pínulitla vík.',6);
+stop(38.617,20.692,ANCHOR,'29. júní','Sivota, Lefkada','7 sjm — letidagur. Flóinn eins og fjörður, fiskitavernur.');
+stop(38.677,20.715,SWIM,'30. júní','Dessimi','Síðasta fjölskyldusundið → skurðurinn kl. 17 → Preveza.',6);
+stop(39.288,20.395,ANCHOR,'1. júlí','Parga','30 sjm. Feneyskur kastali, akkeri í Valtos-flóa.');
+stop(39.187,20.195,ANCHOR,'2. júlí','Mongonisi, Paxos','15 sjm. Snorkl og kapellugangan.');
+stop(42.683,17.952,ANCHOR,'6. júlí','Šunj, Lopud','15 sjm. Besta sandströnd svæðisins, hvíldardagur.');
+stop(42.724,17.664,SWIM,'7. júlí','Okuklje, Mljet','Hádegis-/sundstopp á leið til Korčula.',6);
+
+map.fitBounds([[38.40,16.30],[43.30,21.00]]);
+</script>
+</body>
+</html>
